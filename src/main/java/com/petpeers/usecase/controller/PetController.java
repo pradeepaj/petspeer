@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.petpeers.usecase.dto.PetDto;
@@ -35,18 +36,18 @@ public class PetController {
 		return petService.getAllPets() ;
 	}
 	
-	@GetMapping("/{petId}")
-	public Pet petDetail(@PathVariable("petId") long petId) {
+	@GetMapping("/petDetail")
+	public Pet petDetail(@RequestParam("petId") long petId) {
 		return petService.getPet(petId);
 	}
 	
-	@GetMapping("/myPets/{userId}")
-	public List<Pet> myPets(@PathVariable ("userId") Long userId){
+	@GetMapping("/myPets")
+	public List<Pet> myPets(@RequestParam ("userId") Long userId){
 		return userService.getMyPets(userId);
 	}
 	
-	@PostMapping("/buyPet/{petId}/{userId}")
-	public String buyPet(@PathVariable long petId ,long userId) {
+	@PostMapping("/buyPet/{petId}")
+	public String buyPet(@PathVariable ("petId") long petId , @RequestParam ("userId")long userId) {
 		return userService.buyPet(petId, userId);
 	}
 

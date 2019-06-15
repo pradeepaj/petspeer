@@ -19,15 +19,7 @@ public class User {
 	private String name;
 	private String password;
 	
-	@OneToMany
-	private List<Pet> pet;
 	
-	public List<Pet> getPet() {
-		return pet;
-	}
-	public void setPet(List<Pet> pet) {
-		this.pet = pet;
-	}
 	public long getUserId() {
 		return userId;
 	}
