@@ -2,6 +2,7 @@ package com.petpeers.usecase.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,11 @@ public class UserServiceImpl implements UserService {
 
 			if (userDto.getPassword().equals(userDto.getConfirmPassword())) {
 				User user = new User();
-				user.setName(userDto.getName());
-				user.setPassword(userDto.getPassword());
+				BeanUtils.copyProperties(userDto, user, "confirmPassword");
 				userRepository.save(user);
 				return "Your successfully registered please sign in";
 			} else {
-				return "Password is incorrect";
+				return "Password and confirm password field mismatch";
 			}
 
 		} else {
@@ -47,14 +47,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String buyPet(long petId, long userId) {
 
-		Pet pet = petRepository.findByPetId(petId);
 		
-		User user = userRepository.findByUserId(userId);
-		pet.setAction("Sold");
-		pet.setUser(user);
+		  Pet pet = petRepository.findByPetId(petId);
+		  
+		 User user = userRepository.findByUserId(userId); 
+		 pet.setAction("Sold");
+		 pet.setUser(user);
+		 
 		petRepository.save(pet);
 		return "Order placed successfully";
 
 	}
+
+	
 
 }

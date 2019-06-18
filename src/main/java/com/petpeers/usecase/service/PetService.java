@@ -13,4 +13,6 @@ public interface PetService {
 
 	Pet getPet(long petId);
 
+	List<Pet> searchByLocation(String location);
+
 }

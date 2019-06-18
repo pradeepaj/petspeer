@@ -1,6 +1,6 @@
 package com.petpeers.usecase.dto;
 
-import com.petpeers.usecase.entity.User;
+
 
 public class PetDto {
 	private long petId;
@@ -8,15 +8,6 @@ public class PetDto {
 	private String place;
 	private int age;
 	private String action;
-	private User user;
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public long getPetId() {
 		return petId;
@@ -59,7 +50,7 @@ public class PetDto {
 	}
 
 	public PetDto() {
-		
+
 	}
 
 	public PetDto(long petId, String petName, String place, int age, String action) {

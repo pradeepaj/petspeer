@@ -36,19 +36,23 @@ public class PetController {
 		return petService.getAllPets() ;
 	}
 	
-	@GetMapping("/petDetail")
+	@GetMapping("/pet")
 	public Pet petDetail(@RequestParam("petId") long petId) {
 		return petService.getPet(petId);
 	}
 	
-	@GetMapping("/myPets")
-	public List<Pet> myPets(@RequestParam ("userId") Long userId){
+	@GetMapping("/pet/user/{userId}")
+	public List<Pet> myPets(@PathVariable ("userId") Long userId){
 		return userService.getMyPets(userId);
 	}
 	
-	@PostMapping("/buyPet/{petId}")
-	public String buyPet(@PathVariable ("petId") long petId , @RequestParam ("userId")long userId) {
+	@PostMapping("/pet/user{userId}/buy/{petId}")
+	public String buyPet(@PathVariable ("petId") long petId , @PathVariable ("userId")long userId) {
 		return userService.buyPet(petId, userId);
+	}
+	@GetMapping("/pet/search")
+	public List<Pet>  searchByLocation(@RequestParam String location){
+		return petService.searchByLocation(location);
 	}
 
 	

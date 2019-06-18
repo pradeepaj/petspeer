@@ -4,14 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.petpeers.usecase.entity.User;
-
 @Entity
-@Table(name = "pets_details")
+@Table(name = "pets")
 public class Pet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +20,7 @@ public class Pet {
 	private String action;
 	
 	@ManyToOne
+	@JoinColumn(name="ownerid",referencedColumnName = "userId")
 	private User user;
 
 	public long getPetId() {

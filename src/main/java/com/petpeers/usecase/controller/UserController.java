@@ -10,11 +10,12 @@ import com.petpeers.usecase.dto.UserDto;
 import com.petpeers.usecase.service.UserService;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/register")
 public class UserController {
 	
 	@Autowired
 	private UserService userSerivce;
+	
 	
 	@PostMapping("/user/add")
 	public String addUser(@RequestBody UserDto userDto) {

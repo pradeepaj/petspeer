@@ -1,16 +1,14 @@
 package com.petpeers.usecase.entity;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_details")
+@Table(name = "petUser")
 public class User {
 	
 	@Id
@@ -38,10 +36,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", password=" + password + "]";
-	}
+
 	
 	
 
