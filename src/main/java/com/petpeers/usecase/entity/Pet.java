@@ -18,7 +18,20 @@ public class Pet {
 	private String place;
 	private int age;
 	private String action;
+	public Pet() {
+		
+	}
 	
+	
+	public Pet(long petId, String petName, String place, int age, String action) {
+		super();
+		this.petId = petId;
+		this.petName = petName;
+		this.place = place;
+		this.age = age;
+		this.action = action;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="ownerid",referencedColumnName = "userId")
 	private User user;

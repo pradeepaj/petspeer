@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.petpeers.usecase.dto.PetDto;
 import com.petpeers.usecase.entity.Pet;
+import com.petpeers.usecase.exception.DataNotFoundException;
 import com.petpeers.usecase.repository.PetRepository;
 @Service
 public class PetServiceImpl implements PetService {
@@ -22,7 +23,7 @@ public class PetServiceImpl implements PetService {
 	@Override
 	public String addPet(PetDto petsDto) {
 		if(petsDto!=null) {
-			Pet pet=new Pet();
+			Pet pet= new Pet();
 			BeanUtils.copyProperties(petsDto, pet);
 			petRepository.save(pet);
 			return "Pet added successfully";
@@ -32,15 +33,18 @@ public class PetServiceImpl implements PetService {
 	}
 	@Override
 	public List<Pet> getAllPets() {
-		List<Pet> pet  = petRepository.findAll();
+		return  petRepository.findAll();
 		
-		return pet;
+		
 			
 	}
 	@Override
-	public Pet getPet(long petId) {
-		
-		return petRepository.findByPetId(petId);
+	public Pet getPet(long petId) throws DataNotFoundException {
+	 Pet pet=petRepository.findByPetId(petId);
+				if(pet==null) {
+					throw new DataNotFoundException(" Pet not Found " +petId);
+				}
+		return pet;
 	}
 	@Override
 	public List<Pet> searchByLocation(String location) {

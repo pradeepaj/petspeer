@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.petpeers.usecase.dto.UserDto;
 import com.petpeers.usecase.service.UserService;
-
+import org.apache.log4j.*;
 @RestController
 @RequestMapping("/register")
 public class UserController {
+	
+	private static final Logger log = Logger.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userSerivce;
@@ -19,7 +21,9 @@ public class UserController {
 	
 	@PostMapping("/user/add")
 	public String addUser(@RequestBody UserDto userDto) {
+		log.info("callind add user service");
 		return userSerivce.addUser(userDto);
+		
 	}
 	
 

@@ -16,7 +16,7 @@ import com.petpeers.usecase.entity.Pet;
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long> {
 
-	@Query(value="select * from petpeers.pets p where user_user_id=?1",nativeQuery = true)
+	@Query(value="select * from petpeers.pets p where ownerid=?1",nativeQuery = true)
 	List<Pet> findByUserid(Long userId);
 
 	Pet findByPetId(long petId);

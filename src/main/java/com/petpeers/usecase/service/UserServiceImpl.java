@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.petpeers.usecase.dto.UserDto;
 import com.petpeers.usecase.entity.Pet;
 import com.petpeers.usecase.entity.User;
+import com.petpeers.usecase.exception.DataNotFoundException;
 import com.petpeers.usecase.repository.PetRepository;
 import com.petpeers.usecase.repository.UserRepository;
 
@@ -40,7 +41,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Pet> getMyPets(Long userId) {
+	public List<Pet> getMyPets(Long userId) throws DataNotFoundException{
+		if( petRepository.findByUserid(userId).size()==0) {
+			throw new DataNotFoundException( "Data not found " +userId + " Please enter vaild userId");
+		}
 		return petRepository.findByUserid(userId);
 	}
 

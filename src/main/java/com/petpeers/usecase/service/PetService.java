@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.petpeers.usecase.dto.PetDto;
 import com.petpeers.usecase.entity.Pet;
+import com.petpeers.usecase.exception.DataNotFoundException;
 
 public interface PetService {
 
@@ -11,7 +12,7 @@ public interface PetService {
 
 	List<Pet> getAllPets();
 
-	Pet getPet(long petId);
+	Pet getPet(long petId) throws DataNotFoundException;
 
 	List<Pet> searchByLocation(String location);
 
