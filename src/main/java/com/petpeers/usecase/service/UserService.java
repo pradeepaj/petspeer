@@ -5,11 +5,12 @@ import java.util.List;
 
 import com.petpeers.usecase.dto.UserDto;
 import com.petpeers.usecase.entity.Pet;
+import com.petpeers.usecase.entity.User;
 import com.petpeers.usecase.exception.DataNotFoundException;
 
 public interface UserService {
 
-	String addUser(UserDto userDto);
+	User addUser(UserDto userDto);
 
 	List<Pet> getMyPets(Long userId) throws DataNotFoundException;
 

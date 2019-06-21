@@ -17,9 +17,7 @@ public class PetServiceImpl implements PetService {
 	@Autowired
 	private PetRepository petRepository;
 
-	/*
-	 * @Autowired private ModelMapper modelMapper;
-	 */
+	
 	@Override
 	public String addPet(PetDto petsDto) {
 		if(petsDto!=null) {
